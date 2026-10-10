@@ -1,0 +1,25 @@
+-- CREAR BASE DE DATOS
+CREATE DATABASE modulo2_unidad1_diseno_sql;
+
+--USAR DB
+USE modulo2_unidad1_diseno_sql;
+
+--CREAR TABLA CLIENTE
+CREATE TABLE Clientes(
+id_cliente INT NOT NULL IDENTITY PRIMARY KEY,
+nombre VARCHAR(100) NOT NULL,
+perfil_bio TEXT NOT NULL,
+fecha_registro DATE NOT NULL
+);
+
+SELECT * FROM Clientes;
+
+--CREAR TABLA PRODUCTOS
+CREATE TABLE Productos(
+id_producto INT NOT NULL IDENTITY PRIMARY KEY,
+descripcion VARCHAR(255) NOT NULL,
+precio DECIMAL(10,2) NOT NULL,
+esta_activo INT NOT NULL,
+);
+
+SELECT * FROM Productos;
