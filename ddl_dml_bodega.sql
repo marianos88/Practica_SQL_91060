@@ -35,36 +35,36 @@ VALUES
 ALTER TABLE inventario
 ADD unidades_vendidas INT NOT NULL DEFAULT 0;
 
---Registro de ventas para los productos 'Laptop Pro 15', 'Mouse Inalámbrico' y 'Webcam HD 1080p'
+--Registro de ventas para los productos 'Laptop Pro 15', 'Mouse Inalámbrico' y 'Auriculares BT Pro'
 
 UPDATE inventario
 SET unidades_vendidas = 3
-WHERE nombre_producto = 'Laptop Pro 15';
+WHERE id_producto = 1;
 
 UPDATE inventario
 SET unidades_vendidas = 12
-WHERE nombre_producto = 'Mouse Inalámbrico';
+WHERE id_producto = 2;
 
 UPDATE inventario
 SET unidades_vendidas = 5
-WHERE nombre_producto = 'Auriculares BT Pro';
+WHERE id_producto = 6;
 
 UPDATE inventario
 SET activo = 0
-WHERE nombre_producto = 'Webcam HD 1080p'
+WHERE id_producto = 8;
 
---Actualización de stock_actual para los productos 'Laptop Pro 15', 'Mouse Inalámbrico' y 'Webcam HD 1080p'
+--Actualización de stock_actual para los productos 'Laptop Pro 15', 'Mouse Inalámbrico' y 'Auriculares BT Pro'
 UPDATE inventario
 SET stock_actual = 12
-WHERE nombre_producto = 'Laptop Pro 15';
+WHERE id_producto = 1;
 
 UPDATE inventario
 SET stock_actual = 68
-WHERE nombre_producto = 'Mouse Inalámbrico';
+WHERE id_producto = 2;
 
 UPDATE inventario
 SET stock_actual = 30
-WHERE nombre_producto = 'Auriculares BT Pro';
+WHERE id_producto = 6;
 
 --Ver la tabla completa para confirmar que los datos se cargaron
-SELECT * FROM inventario
+SELECT * FROM inventario;
