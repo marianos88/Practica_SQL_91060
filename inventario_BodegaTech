@@ -1,0 +1,70 @@
+-- ══════════════════════════════════════════
+-- BodegaTech - Script de Inventario
+-- Autor: Mariano Solle
+-- Fecha: 11-10-2026
+-- ══════════════════════════════════════════
+-- ── SECCIÓN DDL ──────────────────────────
+DROP TABLE IF EXISTS inventario;
+
+CREATE TABLE inventario(
+id_producto INT NOT NULL IDENTITY (1,1) PRIMARY KEY,
+nombre_producto VARCHAR(100) NOT NULL, --El nombre del producto es en formato texto y con un límite de 100 caracteres porque al ser productos tecnológicos pueden ser extensos.
+categoria VARCHAR(50) NOT NULL, --La categoría del producto es en formato texto y con un límite de 50 caracteres porque no debería extenderse más de esa cantidad.
+precio_unitario DECIMAL(10,2) NOT NULL, --El precio está expresado en decimales de hasta 10 números y 2 decimales porque es el estándar en montos.
+stock_actual INT NOT NULL, --El stock se visualiza en números enteros para mayor legibilidad.
+stock_minimo INT NOT NULL,
+fecha_ingreso DATE NOT NULL,
+activo TINYINT NOT NULL --El comando TINYINT por default ya ocupa espacio de 1 byte y por lo tanto no es necesario aclarar (1) como fue solicitado en la consigna.
+);
+
+-- ── SECCIÓN DML ──────────────────────────
+INSERT INTO inventario
+(nombre_producto, categoria, precio_unitario, stock_actual, stock_minimo, fecha_ingreso, activo)
+VALUES
+('Laptop Pro 15', 'Computación', 1200.00, 15, 3, '2024-01-10', 1),
+('Mouse Inalámbrico', 'Accesorios', 28.00, 80, 10, '2024-01-10', 1),
+('Monitor 4K 27"', 'Computación', 450.00, 12, 2, '2024-01-15', 1),
+('Teclado Mecánico', 'Accesorios', 95.00, 40, 5, '2024-01-15', 1),
+('Laptop Basic 14', 'Computación', 650.00, 20, 3, '2024-02-01', 1),
+('Auriculares BT Pro', 'Audio', 120.00, 35, 5, '2024-02-01', 1),
+('Hub USB-C 7 puertos', 'Accesorios', 45.00, 60, 10, '2024-02-10', 1),
+('Webcam HD 1080p', 'Accesorios', 85.00, 25, 5, '2024-02-10', 1),
+('SSD Externo 1TB', 'Almacenamiento', 130.00, 18, 3, '2024-03-01', 1),
+('Parlante Bluetooth', 'Audio', 60.00, 45, 8, '2024-03-01', 1);
+
+ALTER TABLE inventario
+ADD unidades_vendidas INT NOT NULL DEFAULT 0;
+
+--Registro de ventas para los productos 'Laptop Pro 15', 'Mouse Inalámbrico' y 'Webcam HD 1080p'
+
+UPDATE inventario
+SET unidades_vendidas = 3
+WHERE nombre_producto = 'Laptop Pro 15';
+
+UPDATE inventario
+SET unidades_vendidas = 12
+WHERE nombre_producto = 'Mouse Inalámbrico';
+
+UPDATE inventario
+SET unidades_vendidas = 5
+WHERE nombre_producto = 'Auriculares BT Pro';
+
+UPDATE inventario
+SET activo = 0
+WHERE nombre_producto = 'Webcam HD 1080p'
+
+--Actualización de stock_actual para los productos 'Laptop Pro 15', 'Mouse Inalámbrico' y 'Webcam HD 1080p'
+UPDATE inventario
+SET stock_actual = 12
+WHERE nombre_producto = 'Laptop Pro 15';
+
+UPDATE inventario
+SET stock_actual = 68
+WHERE nombre_producto = 'Mouse Inalámbrico';
+
+UPDATE inventario
+SET stock_actual = 30
+WHERE nombre_producto = 'Auriculares BT Pro';
+
+--Ver la tabla completa para confirmar que los datos se cargaron
+SELECT * FROM inventario
